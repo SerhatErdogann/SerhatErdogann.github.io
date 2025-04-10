@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Catch the Button Game</title>
+  <style>
+    #popup {
+		display: none;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		background-color: white;
+		border: 2px solid #00bcd4;
+		border-radius: 10px;
+		padding: 30px;
+		font-size: 20px;
+		text-align: center;
+	}
+	
+    #gameButton {
+		background-color: aqua;
+		border-radius: 5px;
+		padding: 10px 20px;
+		position: absolute;
+	}
+  </style>
+</head>
+<body>
+
+<h3 id="level">Level: 1</h3>
+
+<div id="popup">
+	<p id="popup-text"></p>
+	<button onclick="closePopup()">OK</button>
+</div>
+
+<button id="gameButton">Click Me!</button>
+
+<script>
+	const button = document.getElementById("gameButton");
+	const levelText = document.getElementById("level");
+
+	let level = 1;
+	let score = 0;
+	let delay = 500;
+	let moveTimer = null;
+
+	function moveButton() {
+		const top = Math.random() * 300;
+		const left = Math.random() * 300;
+		button.style.marginTop = top + "px";
+		button.style.marginLeft = left + "px";
+	}
+
+	function showPopup(message) {
+		document.getElementById("popup-text").innerText = message;
+		document.getElementById("popup").style.display = "block";
+	}
+
+	function closePopup() {
+		document.getElementById("popup").style.display = "none";
+	}
+
+	
+	window.onload = () => {
+		moveButton();
+	};
+
+	
+	button.addEventListener("mouseenter", () => {
+		if (moveTimer) clearTimeout(moveTimer);
+		moveTimer = setTimeout(() => {
+			moveButton();
+			moveTimer = null;
+		}, delay);
+	});
+
+	
+	button.addEventListener("click", () => {
+		if (moveTimer) {
+			clearTimeout(moveTimer);
+			moveTimer = null;
+		}
+
+		score++;
+
+		if (score >= 3) {
+			showPopup("You win level " + level + "!");
+			level++;
+			score = 0;
+			delay = Math.max(0, 500 - (level - 1) * 100);
+			levelText.innerText = "Level: " + level;
+		}
+
+		moveButton(); 
+	});
+</script>
+
+</body>
+</html>
