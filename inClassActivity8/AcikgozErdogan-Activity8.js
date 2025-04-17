@@ -43,7 +43,7 @@ function displayScores()
 }
 function addScore()
 {
-	
+	$("scores_table").innerHTML = "";
 	
 	if( $("score").value > 100 || 
 	$("score").value.trim() === "" ||
@@ -59,7 +59,7 @@ function addScore()
 	
 	$("name").value = "";
 	$("score").value = "";
-	$("results").innerHTML = "";
+	
 
 	$("name").focus();
 }
