@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How To</title>
+  <link rel="stylesheet" href="style/howto.css" />
+</head>
+<body>
+
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+      });
+  </script>
+
+  <h1>How To Make Toys</h1>
+  <p class="intro">Learn how to create handmade toys for children in need.</p>
+
+  <section class="toy-container">
+    <div class="toy-item" onclick="showSteps('tiger')">
+      <img src="image/tiger/tiger-s3.jpg" alt="Tiger" />
+      <p class="caption">Tiger</p>
+      <p class="caption1">Click to view instructions</p>
+    </div>
+    <div class="toy-item" onclick="showSteps('horse')">
+      <img src="image/horse/horse-s4.jpg" alt="Horse" />
+      <p class="caption">Horse</p>
+      <p class="caption1">Click to view instructions</p>
+    </div>
+    <div class="toy-item" onclick="showSteps('monkey')">
+      <img src="image/monkey/monkey-s3.jpg" alt="Monkey" />
+      <p class="caption">Monkey</p>
+      <p class="caption1">Click to view instructions</p>
+    </div>
+  </section>
+
+  <div id="popup-overlay" style="display: none;">
+    <div id="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="popup-title"></h2>
+      <div id="popup-steps"></div>
+    </div>
+  </div>
+
+  <script>
+    const stepCounts = {
+      tiger: 3,
+      horse: 4,
+      monkey: 3,
+    };
+  
+    function showSteps(toy) {
+      const steps = stepCounts[toy] || 3;
+      const popup = document.getElementById("popup-overlay");
+      const title = document.getElementById("popup-title");
+      const stepsDiv = document.getElementById("popup-steps");
+  
+      title.textContent = `${toy.charAt(0).toUpperCase() + toy.slice(1)} - Instructions`;
+      stepsDiv.innerHTML = "";
+  
+      for (let i = 1; i <= steps; i++) {
+        const stepLabel = document.createElement("p");
+        stepLabel.textContent = `Step ${i}:`;
+        stepLabel.className = "step-label";
+  
+        const img = document.createElement("img");
+        img.src = `image/${toy}/${toy}-s${i}.jpg`;
+        img.alt = `Step ${i}`;
+        img.className = "popup-img";
+  
+        stepsDiv.appendChild(stepLabel);
+        stepsDiv.appendChild(img);
+      }
+  
+      popup.style.display = "flex";
+    }
+  
+    function closePopup() {
+      document.getElementById("popup-overlay").style.display = "none";
+    }
+  
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closePopup();
+    });
+  
+    window.addEventListener("click", (e) => {
+      const popup = document.getElementById("popup-overlay");
+      if (e.target === popup) closePopup();
+    });
+  </script>
+  
+
+</body>
+</html>

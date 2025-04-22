@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyuncak Mucitleri</title>
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <script>
+    fetch("navbar.html")
+        .then(res => res.text())
+        .then(data => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+        });
+    </script>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <header class="hero">
+            <h1>Welcome to Oyuncak Mucitleri</h1>
+            <p>Bringing joy to children through handcrafted toys</p>
+        </header>
+
+        <!-- INFORMATION ABOUT ACTIVITY SECTION -->
+        <section class="info-container">
+            <div class="info-box">
+                <h2>What We Do</h2>
+                <p>We create handmade toys for children in disadvantaged areas, bringing smiles and fostering creativity.</p>
+            </div>
+            <div class="info-box">
+                <h2>How We Do It</h2>
+                <p>Our dedicated volunteers craft unique toys using sustainable materials and innovative designs.</p>
+            </div>
+            <div class="info-box">
+                <h2>Where We Send Toys</h2>
+                <p>We distribute toys to children in need across various cities in Turkey and beyond.</p>
+            </div>
+        </section>
+
+        <div class="button-container">
+            <a href="#" class="cta-button">Get Involved</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p>&copy; 2024 Oyuncak Mucitleri. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
