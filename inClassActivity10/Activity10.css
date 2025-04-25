@@ -1,0 +1,10 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0 auto;
+	padding: 20px;
+	width: 550px;
+}
+.error {
+    border: 2px solid red;
+}
+	
