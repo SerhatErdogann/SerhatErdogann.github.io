@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projects - Serhat Erdoğan</title>
+    <!-- CSS Dosyası -->
+    <link rel="stylesheet" href="styles.css"/>
+  
+    <!-- FontAwesome (Iconlar için doğru CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  
+  <body>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+  
+      <div class="social-icons">
+        <a href="https://github.com/serhaterdogann" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/serhat-erdogan-b0568831b" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        
+        
+      </div>
+    </nav>
+  
+
+  <h1>My Projects</h1>
+
+  <section class="projects-container">
+  
+
+    <!-- Öğrencim Olur Musun? Akademi -->
+    <div class="project-card" onclick="toggleDetails('akademi')">
+      <img src="a1.png" alt="Akademi">
+      <h3>Öğrencim Olur Musun? Akademi</h3>
+    </div>
+    <div class="project-details" id="akademi">
+      <p>
+        Link: https://www.ogrencimolurmusun.com/ </p>
+        <p>A web application designed to support primary and middle school students affected by educational
+          inequality by providing academic and mentorship assistance. The platform features a user-friendly
+          interface developed with React. On the backend, Supabase and Prisma are used for data
+          management.
+      </p>
+      <div class="project-images">
+        <img src="a1.png" alt="A1">
+        <img src="a2.png" alt="A2">
+      </div>
+    </div>
+
+    <!-- Path Blocker Game -->
+    <div class="project-card" onclick="toggleDetails('path')">
+      <img src="p1.png" alt="Path Blocker Game">
+      <h3>Path Blocker Game</h3>
+    </div>
+    <div class="project-details" id="path">
+      <p>Technologies: Java, BFS (Breadth-First Search), Image Processing  </p>
+      <p> A puzzle game developed in Java with AI support. The goal is to find the most optimal path on the
+        map, starting from a given point. In this project, I used Java, Artificial Intelligence, and Search
+        Algorithms (BFS). I developed an effective solution that allows the AI to select the best steps using
+        different search algorithms.</p>
+      <div class="project-images">
+        <img src="p1.png" alt="P1">
+        <img src="p2.png" alt="P2">
+      </div>
+    </div>
+
+    <!-- Expense Tracker -->
+    <div class="project-card" onclick="toggleDetails('expense')">
+      <img src="e1.png" alt="Expense Tracker">
+      <h3>Expense Tracker</h3>
+    </div>
+    <div class="project-details" id="expense">
+      <p> Technologies: C++, FLTK      </p>
+      <p> This application, developed using C++ and the FLTK library, enables users to categorize their expenses
+        and manage their budgets effectively. It allows users to plan their future payments and manage their
+        transactions accordingly.</p>
+      <div class="project-images">
+        <img src="e1.png" alt="E1">
+        <img src="e2.png" alt="E2">
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleDetails(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>

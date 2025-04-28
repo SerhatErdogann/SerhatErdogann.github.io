@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Contact - Serhat Erdoğan</title>
+    <!-- CSS Dosyası -->
+    <link rel="stylesheet" href="styles.css"/>
+  
+    <!-- FontAwesome (Iconlar için doğru CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  
+  <body>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+  
+      <div class="social-icons">
+        <a href="https://github.com/serhaterdogann" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/serhat-erdogan-b0568831b" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        
+        
+      </div>
+    </nav>
+  
+
+  <h1>Contact Me</h1>
+
+  <form class="contact-form" id="contactForm" action="#" method="POST">
+    <label>Name and Surname:</label>
+    <input type="text" name="name" required>
+
+    <label>Email:</label>
+    <input type="text" name="email" required>
+
+    <label>Contacted Company:</label>
+    <input type="text" name="company" required>
+    
+    <label>Why are you writing?</label>
+    <input type="textarea" name="why" required>
+    <button type="submit">Gönder</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Popup mesaj
+      Swal.fire({
+        title: 'Your information has been sent!',
+        text: 'We will contact you as soon as possible.',
+        icon: 'success',
+        confirmButtonText: 'Okey',
+        confirmButtonColor: '#0072ff'
+      });
+
+      form.reset(); // Formu temizle
+    });
+  </script>
+</body>
+</html>
