@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    margin: 0; 
+    padding: 0;
+    background-color: #f9f9f9; 
+    background-image: linear-gradient(rgba(255, 255, 255, 0.50)), url('../image/background.avif');
+}
+
+/* Introduction section styling */
+.intro {
+    max-width: 800px; 
+    margin: 0 auto 40px; 
+    line-height: 1.5; 
+}
+
+/* Volunteer registration box styling */
+.volunteer-box {
+    background-color: #D6EAF8; 
+    border-radius: 8px; 
+    padding: 20px; 
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    text-align: center; 
+    max-width: 1000px; 
+    margin: 0 auto 40px; 
+}
+
+/* Sponsor registration box styling */
+.sponsor-box {
+    background-color: #c5e6d2; 
+    border-radius: 8px; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    text-align: center; 
+    max-width: 1000px; 
+    margin: 0 auto 40px; /* Centers and adds bottom spacing */
+}
+
+/* FAQ boxes styling */
+.question-box {
+    display: flex; /* Aligns content horizontally */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    gap: 20px; 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    background-color: #fff; 
+    flex: 1; /* Flexible width */
+    min-width: 200px; /* Minimum width */
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    padding: 20px;
+    border: 1px solid #ddd; /* Light gray border */
+}
+
+/* General button styling */
+.btn {
+    display: inline-block; /* Displays button inline */
+    margin-top: 15px; 
+    padding: 12px 24px; 
+    border-radius: 4px; 
+    text-decoration: none; /* Removes link underline */
+    font-weight: bold; 
+    cursor: pointer; /* Changes cursor to pointer */
+}
+
+/* Volunteer button color styling */
+.volunteer-btn {
+    background-color: #391db4; 
+    color: #fff; 
+}
+
+/* Sponsor button color styling */
+.sponsor-btn {
+    background-color: #388E3C; 
+    color: #fff; 
+}  
+
+/* jQuery UI Popup Form Stil */
+.ui-dialog form {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.ui-dialog label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.ui-dialog input,
+.ui-dialog select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.ui-dialog input:focus,
+.ui-dialog select:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+  outline: none;
+}
+
+#faq-accordion {
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+#faq-accordion h3 {
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 15px 20px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#faq-accordion h3:hover {
+  background-color: #ececec;
+}
+
+#faq-accordion .ui-state-active {
+  background-color: #0056b3 !important;
+  color: white;
+}
+
+#faq-accordion .ui-accordion-content {
+  padding: 15px 20px;
+  background-color: #ffffff;
+  color: #555;
+  font-size: 16px;
+  border-radius: 0 0 8px 8px;
+}

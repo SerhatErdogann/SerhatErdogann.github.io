@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f9f9f9; 
+    background-image: linear-gradient(rgba(255, 255, 255, 0.50)), url('../image/background.avif');
+    background-size: cover; 
+}
+
+/* Hero title */
+.hero h1 {
+    font-size: 32px; 
+    font-weight: bold; 
+    color: #0c3b84;
+}
+
+/* Hero section description text */
+.hero p {
+    font-size: 18px; /* Description text size */
+    color: #555; /* Light gray color */
+}
+
+/* Container for info boxes */
+.info-container {
+    display: flex; /* Align boxes horizontally */
+    justify-content: center; 
+    gap: 20px; /* Space between boxes */
+    padding: 20px;
+    flex-wrap: wrap; /* Allows boxes to stack on smaller screens */
+}
+
+/* Styling for info boxes */
+.info-box {
+    background-color: white; /* White background */
+    padding: 20px; /* Inner spacing */
+    width: 300px; /* Fixed width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+    text-align: center; 
+}
+
+/* Styling for info box titles */
+.info-box h2 {
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #0c3b84;
+}
+
+/* Styling for info box text */
+.info-box p {
+    font-size: 16px; 
+    color: #666; 
+}
+
+/* Button container */
+.button-container {
+    margin-top: 20px; /* Top margin */
+}
+
+/* Call-to-action button */
+.cta-button {
+    display: inline-block; /* Inline block alignment */
+    background-color: #007bff; 
+    color: white; 
+    text-decoration: none; /* Removes link underline */
+    padding: 12px 24px; 
+    border-radius: 5px; 
+    font-size: 18px; 
+    font-weight: bold; 
+}
+
+/* Button hover effect */
+.cta-button:hover {
+    background-color: #0056b3; 
+}
+
+
+/* Main content styling using ID */
+#main-content {
+    padding-top: 3px; 
+}
+.statistics-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap; 
+  margin-top: 40px;
+}
+
+.stat-card {
+  width: 200px;
+  padding: 10px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.ui-progressbar {
+  width: 100px;
+  height: 8px;
+  background: #ddd;
+  border-radius: 10px;
+}
+
+
