@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="style/gallery.css">
+</head>
+<body>
+
+  <div id="navbar-placeholder"></div>
+
+  <script>
+  fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => {
+      document.getElementById("navbar-placeholder").innerHTML = data;
+      });
+  </script>
+    <header class="hero">
+        <h1>Toy Gallery</h1>
+        
+    </header>
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h2>19 Mayıs</h2>
+        <div class="carousel">
+          <img src="image/19mayis/1.jpg" alt="Toy 1">
+          <img src="image/19mayis/2.jpg" alt="Toy 2">
+          <img src="image/19mayis/3.jpg" alt="Toy 3">
+        </div>
+      </section>
+      
+      <section class="gallery-section">
+        <h2>26 Mayıs</h2>
+        <div class="carousel">
+          <img src="image/26mayis/1.jpg" alt="Toy 1">
+          <img src="image/26mayis/2.jpg" alt="Toy 2">
+          <img src="image/26mayis/3.jpg" alt="Toy 3">
+        </div>
+      </section>
+      
+      <section class="gallery-section">
+        <h2>23 Haziran</h2>
+        <div class="carousel">
+          <img src="image/23haziran/1.jpg" alt="Toy 1">
+          <img src="image/23haziran/2.JPG" alt="Toy 2">
+          <img src="image/23haziran/3.jpg" alt="Toy 3">
+          <img src="image/23haziran/4.JPG" alt="Toy 4">
+        </div>
+      </section>
+  <!-- Footer -->
+  <footer id="footer">
+    <p> 2025 Oyuncak Mucitleri. All rights reserved.</p>
+</footer>   
+
+</body>
+</html>
