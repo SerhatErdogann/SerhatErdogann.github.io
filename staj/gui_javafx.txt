@@ -155,3 +155,28 @@ public class MessagingSimulatorUI extends Application {
         }
     }
 }
+
+
+
+-------------------------------
+4. JavaFX SDK'yı Projeye Ekle
+Projeye sağ tıkla → Build Path → Configure Build Path
+
+Sol menüde "Libraries" sekmesine tıkla.
+
+Add External JARs → C:\javafx-sdk-21\lib\ içindeki tüm .jar dosyalarını seç ve ekle.
+
+Ardından Apply and Close.
+
+🧠 3. VM Arguments Ayarla (ÇOK ÖNEMLİ)
+JavaFX modüllerini Eclipse’e anlatmak için şunu yap:
+
+Run > Run Configurations menüsüne git.
+
+Sol menüden projenin Java Application kısmını seç (oluşturulmamışsa yeni bir tane ekle).
+
+Sağda "Arguments" sekmesine git.
+
+VM Arguments kutusuna şunu yaz:
+--module-path "C:\javafx-sdk-21\lib" --add-modules javafx.controls
+--------------------------------
