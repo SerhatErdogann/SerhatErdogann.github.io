@@ -180,3 +180,29 @@ Sağda "Arguments" sekmesine git.
 VM Arguments kutusuna şunu yaz:
 --module-path "C:\javafx-sdk-21\lib" --add-modules javafx.controls
 --------------------------------
+
+
+
+1. Yeni Proje Oluştur
+File > New Project → Java with Ant > JavaFX > JavaFX Application
+
+Projeye bir isim ver (MessagingSimulator gibi)
+
+2. JavaFX SDK Yolunu Tanımla
+Projeye sağ tıkla → Properties
+
+Libraries > Compile sekmesine gel.
+
+Add JAR/Folder seç → C:\javafx-sdk-21\lib altındaki tüm .jar dosyalarını ekle.
+
+3. VM Options Ayarla
+Hâlâ Properties penceresindeyken:
+
+Run sekmesine gel.
+
+VM Options kısmına şunu yaz:
+--module-path "C:\javafx-sdk-21\lib" --add-modules javafx.controls
+
+💡 Eğer FXML de kullanacaksan:
+--module-path "C:\javafx-sdk-21\lib" --add-modules javafx.controls,javafx.fxml
+
