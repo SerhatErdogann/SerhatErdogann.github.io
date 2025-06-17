@@ -1,0 +1,157 @@
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+import java.io.*;
+import java.net.Socket;
+
+public class MessagingSimulatorUI extends Application {
+
+    private TextArea logArea;
+    private TextField messageInput;
+    private ComboBox<String> protocolSelector;
+
+    private Socket tcpSocket;
+    private BufferedReader reader;
+    private BufferedWriter writer;
+
+    private Thread receiveThread;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("TCP / UDP / Serial Messaging Simulator");
+
+        // Mesaj kayıtlarının gösterileceği alan
+        logArea = new TextArea();
+        logArea.setEditable(false);
+        logArea.setWrapText(true);
+
+        // Kullanıcının mesaj gireceği alan
+        messageInput = new TextField();
+        messageInput.setPromptText("Mesajınızı girin...");
+
+        // Protokol seçimi (şimdilik sadece TCP çalışıyor)
+        protocolSelector = new ComboBox<>();
+        protocolSelector.getItems().addAll("TCP", "UDP", "Serial");
+        protocolSelector.setValue("TCP");
+
+        // Butonlar
+        Button connectButton = new Button("Bağlan");
+        Button sendButton = new Button("Gönder");
+        Button clearButton = new Button("Temizle");
+
+        connectButton.setOnAction(e -> connectAction());
+        sendButton.setOnAction(e -> sendAction());
+        clearButton.setOnAction(e -> logArea.clear());
+
+        // Üst kontrol alanı (butonlar ve combo box)
+        HBox topControls = new HBox(10, protocolSelector, connectButton, sendButton, clearButton);
+        topControls.setPadding(new Insets(10));
+
+        // Ana layout
+        VBox root = new VBox(10, topControls, messageInput, logArea);
+        root.setPadding(new Insets(10));
+
+        Scene scene = new Scene(root, 600, 400);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        // Uygulama kapatıldığında kaynakları temizle
+        primaryStage.setOnCloseRequest(event -> {
+            closeConnection();
+        });
+    }
+
+    // Bağlantı kurma işlemi (şimdilik sadece TCP)
+    private void connectAction() {
+        String protocol = protocolSelector.getValue();
+
+        if ("TCP".equals(protocol)) {
+            try {
+                // TCP soketini başlat (127.0.0.1:1234)
+                tcpSocket = new Socket("127.0.0.1", 1234);
+                reader = new BufferedReader(new InputStreamReader(tcpSocket.getInputStream()));
+                writer = new BufferedWriter(new OutputStreamWriter(tcpSocket.getOutputStream()));
+
+                log("[TCP] Bağlantı başarılı.");
+
+                // Gelen verileri dinlemek için ayrı bir thread başlat
+                receiveThread = new Thread(() -> {
+                    String line;
+                    try {
+                        while ((line = reader.readLine()) != null) {
+                            String finalLine = line;
+                            log("[Gelen - TCP] " + finalLine);
+                        }
+                    } catch (IOException e) {
+                        log("⚠ TCP okuma hatası: " + e.getMessage());
+                    }
+                });
+                receiveThread.setDaemon(true); // JavaFX kapandığında thread otomatik sonlanır
+                receiveThread.start();
+
+            } catch (IOException e) {
+                log("⚠ TCP bağlantısı başarısız: " + e.getMessage());
+            }
+        } else {
+            log("⚠ Bu sürümde sadece TCP destekleniyor.");
+        }
+    }
+
+    // Mesaj gönderme işlemi
+    private void sendAction() {
+        String message = messageInput.getText().trim();
+        if (message.isEmpty()) {
+            log("⚠ Mesaj boş olamaz.");
+            return;
+        }
+
+        String protocol = protocolSelector.getValue();
+
+        if ("TCP".equals(protocol)) {
+            if (writer == null) {
+                log("⚠ Önce TCP bağlantısı kurmalısınız.");
+                return;
+            }
+            try {
+                // TCP mesaj gönderme
+                writer.write(message);
+                writer.newLine(); // Satır sonu karakteri karşı tarafın readline() için gerekli
+                writer.flush();
+                log("[Gönder - TCP] " + message);
+                messageInput.clear();
+            } catch (IOException e) {
+                log("⚠ TCP gönderme hatası: " + e.getMessage());
+            }
+        } else {
+            log("⚠ Bu sürümde sadece TCP destekleniyor.");
+        }
+    }
+
+    // Gelen/giden mesajları GUI'de loglama
+    private void log(String text) {
+        Platform.runLater(() -> {
+            logArea.appendText(text + "\n");
+        });
+    }
+
+    // Uygulama kapanırken bağlantıyı düzgün kapat
+    private void closeConnection() {
+        try {
+            if (reader != null) reader.close();
+            if (writer != null) writer.close();
+            if (tcpSocket != null && !tcpSocket.isClosed()) tcpSocket.close();
+            log("[TCP] Bağlantı kapatıldı.");
+        } catch (IOException e) {
+            log("⚠ Bağlantı kapatma hatası: " + e.getMessage());
+        }
+    }
+}
