@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="400" prefWidth="400" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+
+    <Label text="TCP Client Uygulaması" />
+
+    <HBox alignment="TOP_CENTER" spacing="5">
+        <TextField fx:id="ipField" promptText="Sunucu IP (örn: 127.0.0.1)" />
+        <TextField fx:id="portField" promptText="Port (örn: 12345)" />
+    </HBox>
+
+    <Button onAction="#connectToServer" text="Bağlan" />
+
+    <TextField fx:id="messageField" promptText="Mesajınızı yazın" />
+    <Button onAction="#sendMessage" text="Gönder" />
+
+    <TextArea fx:id="logArea" editable="false" prefRowCount="10" />
+</VBox>
