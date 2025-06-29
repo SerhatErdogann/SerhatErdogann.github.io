@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ScriptPanelController"
+      spacing="10" style="-fx-padding: 10;">
+    
+    <Button text="Script Seç" onAction="#handleSelectScript" />
+
+    <SplitPane orientation="HORIZONTAL" dividerPositions="0.3">
+        <ListView fx:id="scriptListView" />
+        <TextArea fx:id="scriptContentArea" editable="false" wrapText="true" />
+    </SplitPane>
+</VBox>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="BetiklerController"
+      spacing="10" style="-fx-padding: 10;">
+
+    <!-- ÜST BUTONLAR -->
+    <HBox spacing="10">
+        <Button text="Scriptler" onAction="#showScriptPanel"/>
+        <Button text="Çıktılar" onAction="#showOutputPanel"/>
+    </HBox>
+
+    <!-- DEĞİŞEBİLİR PANEL -->
+    <StackPane fx:id="dynamicArea" VBox.vgrow="ALWAYS"
+               style="-fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: white;" />
+</VBox>

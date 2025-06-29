@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="DigerPanelController"
+           orientation="VERTICAL"
+           prefWidth="1280" prefHeight="800"
+           dividerPositions="0.5"
+           style="-fx-background-color: #f5f5f5;">
+
+    <!-- ÜST ALAN: Servisler ve Diğer -->
+    <SplitPane orientation="HORIZONTAL" dividerPositions="0.4">
+
+        <!-- Sol: Servisler -->
+       <VBox spacing="10" style="-fx-padding: 15;">  
+    <fx:include  fx:id="servislerInclude" source="servisler_panel.fxml"/>
+</VBox>
+
+        <!-- Sağ: Diğer -->
+        <VBox spacing="10" style="; -fx-padding: 15;">
+            <HBox spacing="10">
+                <Button text="Mesaj Gezgini" onAction="#showMessageExplorer"/>
+                <Button text="Betikler" onAction="#showScripts"/>
+                <Button text="Giden Mesajlar" onAction="#showSentMessages"/>
+            </HBox>
+            <StackPane fx:id="dynamicContent" VBox.vgrow="ALWAYS"
+                       style="-fx-background-color: white; -fx-border-color: #bbbbbb; -fx-border-width: 1;" />
+        </VBox>
+
+    </SplitPane>
+
+    <!-- ALT ALAN: Kayıtlar -->
+    <VBox spacing="10" style="-fx-background-color: #ffffff; -fx-padding: 15;">
+        <Label text="Kayıtlar" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <TableView fx:id="logTableView" VBox.vgrow="ALWAYS">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="levelColumn" text="Level" />
+                <TableColumn fx:id="messageColumn" text="Message" />
+                <TableColumn fx:id="sourceColumn" text="Source" />
+                <TableColumn fx:id="timeColumn" text="Time" />
+            </columns>
+        </TableView>
+    </VBox>
+
+</SplitPane>
