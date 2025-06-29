@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      spacing="10" style="-fx-padding: 10;">
+    
+    <TextArea fx:id="outputArea" prefHeight="400" wrapText="true" editable="false" />
+</VBox>
