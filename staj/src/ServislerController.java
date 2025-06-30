@@ -53,26 +53,20 @@ public class ServislerController {
 
     @FXML
     private void handleStarMessage() {
-        LogEntry selectedLog = logTableView.getSelectionModel().getSelectedItem();
-        if (selectedLog == null) {
-            showAlert("Uyarı", "Lütfen yıldızlamak için bir kayıt seçin.");
-            return;
-        }
-
         String selectedItem = getSelectedDirectoryFromView();
         if (selectedItem == null) {
             showAlert("Uyarı", "Lütfen önce bir dizin seçin.");
             return;
         }
 
-        String dirName = selectedItem.replace("[Dizin] ", "");
-        File dir = new File(baseDir, dirName);
-
+        // Dizin adı işlemi
+        File dir = new File(baseDir, selectedItem.replace("[Dizin] ", ""));
         if (!dir.exists()) {
             showAlert("Hata", "Seçilen dizin dosya sisteminde yok.");
             return;
         }
 
+        // Mesaj için ad girme
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Mesajı Yıldızla");
         dialog.setHeaderText("Mesaj için bir ad girin:");
@@ -82,12 +76,16 @@ public class ServislerController {
             File outFile = new File(dir, name + ".txt");
 
             try (FileWriter writer = new FileWriter(outFile)) {
-                writer.write("Level: " + selectedLog.getLevel() + "\n");
-                writer.write("Message: " + selectedLog.getMessage() + "\n");
-                writer.write("Source: " + selectedLog.getSource() + "\n");
-                writer.write("Time: " + selectedLog.getTime() + "\n");
-                writer.flush();
+                // Burada mesaj yazılır
+                writer.write("Mesaj adı: " + name + "\n");
 
+                // Diğer bilgileri ekleyebiliriz
+                writer.write("Level: Dummy Level\n");
+                writer.write("Message: Dummy Message\n");
+                writer.write("Source: Dummy Source\n");
+                writer.write("Time: " + System.currentTimeMillis() + "\n");
+
+                // Listeye ekleme
                 messageListView.getItems().add("  ↳ " + name + ".txt");
                 showAlert("Başarılı", "Mesaj kaydedildi: " + name);
             } catch (IOException e) {
@@ -95,6 +93,7 @@ public class ServislerController {
             }
         });
     }
+
 
     @FXML
     private void handleSendMessage() {
@@ -164,7 +163,42 @@ public class ServislerController {
 
     @FXML
     private void handleLogFiltering() {
+        try {
+            // Log filtreleme penceresini yükle
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("log_filter_dialog.fxml"));
+            DialogPane dialogPane = loader.load();
+            LogFilterController controller = loader.getController();
+
+            // Log filtreleme penceresi
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setTitle("Log Filtreleme");
+            dialog.setDialogPane(dialogPane);
+
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+            dialog.showAndWait().ifPresent(result -> {
+                if (result == ButtonType.OK) {
+                    // Kullanıcının seçimlerini al
+                    boolean isStatusInfoSelected = controller.isStatusInfoSelected();
+                    boolean isStatusRequestSelected = controller.isStatusRequestSelected();
+                    boolean isRfStatusSelected = controller.isRfStatusSelected();
+
+                    // Bu bilgileri kullanarak logları filtrele
+                    System.out.println("Durum Bilgisi: " + isStatusInfoSelected);
+                    System.out.println("Durum Bilgisi İsteği: " + isStatusRequestSelected);
+                    System.out.println("RFDurum: " + isRfStatusSelected);
+
+                    // Bu seçime göre logları gösterme (örneğin, güncellenmiş logları yükleyebilirsin)
+                    showAlert("Log Filtreleme", "Filtreleme tamamlandı.");
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Hata", "Log filtreleme penceresi yüklenemedi:\n" + e.getMessage());
+        }
     }
+
 
     @FXML
     private void handleRecordMarking() {
