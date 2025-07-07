@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      spacing="2" style="-fx-padding: 2;" fx:controller="OutputController">
+
+    <!-- Logları Silmek için Buton -->
+    <HBox alignment="CENTER_RIGHT" spacing="2" style="-fx-padding: 2;">
+        <Button onAction="#handleClearLogs" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+    <graphic>
+        <ImageView fitHeight="20.0" fitWidth="20.0">
+            <image>
+            							 <!-- Alt klasördeki dosya yolu -->
+                <Image url="@icons/or_icon.png" />
+            </image>
+        </ImageView>
+    </graphic>
+</Button>
+    </HBox>
+
+    <!-- Logları gösterecek TextArea -->
+    <TextArea fx:id="outputArea" prefHeight="400" wrapText="true" editable="false" />
+</VBox>
