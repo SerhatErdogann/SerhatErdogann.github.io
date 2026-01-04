@@ -125,8 +125,20 @@
     }
 
     async function init() {
-      FEEDS.forEach(feed => grid.appendChild(cardTemplate(feed)));
+FEEDS.forEach(feed => {
+    grid.appendChild(cardTemplate(feed));
 
+    const id = feed.key;
+
+    // 🔗 BUTONLARI BAĞLA
+    document.getElementById(`inc-${id}`).addEventListener("click", () => {
+      changeValue(id, +1);
+    });
+
+    document.getElementById(`dec-${id}`).addEventListener("click", () => {
+      changeValue(id, -1);
+    });
+  });
       await Promise.allSettled(
         FEEDS.map(async feed => {
           const id = feed.key;
